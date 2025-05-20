@@ -1,5 +1,8 @@
 #pragma once
-class Factory
+class Project
 {
+protected:
+	int id;
+	float budget;
 };
 

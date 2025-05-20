@@ -13,33 +13,16 @@ public:
 
     Personal(int id, string name, int salary) : salary{ salary }, Employee{ id, name } {};
 
-    int calcBace(int salary, int wtime) override
-    {
-        return salary * wtime;
-    }
-    virtual int calcBonus() override
-    {
-        return 0;
-    }
-    void setSalary(int salary)
-    {
-        this->salary = salary;
-    }
+    int calcBace(int salary, int wtime);
+    int calcBonus();
 
-    int getSalary() const
-    {
-        return salary;
-    }
+    void setSalary(int salary);
 
-    void calc() override
-    {
-        payment = calcBace(salary, static_cast<int>(worktime));
-    }
+    int getSalary() const;
 
-    void PrintInfo() override
-    {
-        cout << "ID: " << id << "\nName: " << name << "\nWork time: " << worktime << "\nPayment: " << payment << endl;
-    }
+    void calc();
+
+    void PrintInfo();
 };
 
 class Cleaner : public Personal

@@ -20,32 +20,32 @@ void Employee::setPayment(int payment)
     this->payment = payment;
 }
 
-const int Employee::getID()
+void Employee::setPosition(string position)
+{
+    this->position = position;
+}
+
+int Employee::getID() const
 {
     return id;
 }
 
-const string Employee::getName()
+string Employee::getName() const
 {
     return name;
 }
 
-const float Employee::getWorktime()
+float Employee::getWorktime() const
 {
     return worktime;
 }
 
-const int Employee::getPayment()
+int Employee::getPayment() const
 {
     return payment;
 }
 
-void Employee::setWorkTime(float worktime)
+string Employee::getPosition()
 {
-    this->worktime = worktime;
-}
-
-const float Employee::getWorkTime()
-{
-    return worktime;
+    return position;
 }

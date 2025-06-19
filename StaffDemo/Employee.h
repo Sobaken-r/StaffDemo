@@ -9,26 +9,25 @@ protected:
 	string name;
 	float worktime;
 	int payment;
+	string position;
 public:
-	Employee() : id{ 0 }, name{ "Not found" }, worktime{ 0 }, payment{ 0 } {};
-	Employee(int id, string name) : id{ id }, name{ name }, worktime{ 0 }, payment{ 0 } {};
+	Employee() : id{ 0 }, name{ "Not found" }, worktime{ 0 }, payment{ 0 }, position{ "Not found" } {};
+	Employee(int id, string name, float worktime, string position) : id{ id }, name{ name }, worktime{ worktime }, payment{ 0 }, position { position } {};
 
 	void setID(int id);
 	void setName(string name);
 	void setWorktime(float worktime);
 	void setPayment(int payment);
+	void setPosition(string position);
 
-	const int getID();
-	const string getName();
-	const float getWorktime();
-	const int getPayment();
-
-	void setWorkTime(float worktime);
-	const float getWorkTime();
+	int getID() const;
+	string getName() const;
+	float getWorktime() const;
+	int getPayment() const;
+	string getPosition();
 
 	virtual void calc() = 0;
 	virtual void PrintInfo() = 0;
 
-	virtual ~Employee() {}
 };
 

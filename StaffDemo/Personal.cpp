@@ -28,18 +28,33 @@ void Personal::calc()
 
 void Personal::PrintInfo()
 {
-    cout << "ID: " << id << "\nName: " << name << "\nWork time: " << worktime << "\nPayment: " << payment << endl;
+    calc();
 }
+
+Cleaner::Cleaner(int id, string name, float worktime, int salary, string position) : Personal{ id, name, worktime, salary, "Cleaner" }
+{
+    calc();
+};
 
 void Cleaner::calc()
 {
 	payment = calcBace(salary, static_cast<int>(worktime)) + calcBonus();
 }
 
-void Cleaner::PrintInfo()
+void Cleaner::PrintInfo() const
 {
-    cout << "Cleaner info" << endl;
-    Personal::PrintInfo();
+    cout << "\t\t\t\t\t\tID: " << id
+        << "\n\t\t\t\t\t\tName: " << name
+        << "\n\t\t\t\t\t\tWork time: " << worktime
+        << "\n\t\t\t\t\t\tPayout: " << salary
+        << "hour\n\t\t\t\t\t\tPayment: " << payment
+        << "\n\t\t\t\t\t\tPosition: " << position
+        << endl;
+}
+
+Driver::Driver(int id, string name, float worktime, int salary, string position) : Personal(id, name, worktime, salary, "Driver")
+{
+    calc();
 }
 
 int Driver::calcBonus()
@@ -49,8 +64,14 @@ int Driver::calcBonus()
     return 0;
 }
 
-void Driver::PrintInfo()
+void Driver::PrintInfo() const
 {
-    cout << "Driver info" << endl;
-    Personal::PrintInfo();
+
+    cout << "\t\t\t\t\t\tID: " << id
+        << "\n\t\t\t\t\t\tName: " << name
+        << "\n\t\t\t\t\t\tWork time: " << worktime
+        << "\n\t\t\t\t\t\tPayout: " << salary
+        << "hour\n\t\t\t\t\t\tPayment: " << payment
+        << "\n\t\t\t\t\t\tPosition: " << position
+        << endl;
 }

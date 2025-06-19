@@ -132,6 +132,7 @@
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Personal.cpp" />
+    <ClCompile Include="Project.cpp" />
     <ClCompile Include="StaffDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Personal.h" />
+    <ClInclude Include="Project.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

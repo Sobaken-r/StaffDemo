@@ -1,4 +1,4 @@
-#pragma once
+    #pragma once
 #include <iostream>
 #include "Employee.h"
 #include "Interfaces.h"
@@ -11,7 +11,7 @@ protected:
 public:
     Personal() : Employee(), salary(0) {}
 
-    Personal(int id, string name, int salary) : salary{ salary }, Employee{ id, name } {};
+    Personal(int id, string name,float worktime, int salary, string position) : salary{ salary }, Employee{ id, name,worktime, position } {};
 
     int calcBace(int salary, int wtime);
     int calcBonus();
@@ -29,11 +29,11 @@ class Cleaner : public Personal
 {
 public:
     Cleaner() : Personal() {};
-    Cleaner(int id, string name, int salary) : Personal{ id, name, salary } {};
+    Cleaner(int id, string name,float worktime, int salary, string position);
 
     void calc() override;
 
-    void PrintInfo() override;
+    void PrintInfo() const;//поменять
 
 };
 
@@ -41,9 +41,10 @@ class Driver : public Personal
 {
 public:
     Driver() : Personal() {};
-    Driver(int id, string name, int salary) : Personal(id, name, salary) {}
+    Driver(int id, string name, float worktime, int salary, string position);
 
     int calcBonus() override;
 
-    void PrintInfo() override;
+    void PrintInfo() const;//поменять
 };
+

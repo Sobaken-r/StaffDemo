@@ -16,5 +16,5 @@ class ProjectBudget
 {
 public:
 	virtual int calcBudgetPart(float part, int budget) = 0;
-	virtual int calcAdditions() = 0;
+	virtual double calcAdditions() = 0;
 };

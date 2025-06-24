@@ -28,6 +28,5 @@ public:
 
 	virtual void calc() = 0;
 	virtual void PrintInfo() = 0;
-
 };
 

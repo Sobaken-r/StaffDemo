@@ -29,6 +29,8 @@ public:
 	void PrintInfo();
 	void calc();
 	int calcHeading();
+
+	int getSalary() const;
 };
 
 class SeniorManager : public Employee, public Project

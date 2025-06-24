@@ -278,12 +278,33 @@ void TeamLeader::addTeamMember(Programmer* programmer)
 	if (programmer != nullptr) 
 	{
 		team.push_back(programmer);
+		calc();
 	}
+}
+
+bool TeamLeader::removeTeamMember(Programmer* programmer)
+{
+	auto it = find(team.begin(), team.end(), programmer);
+	if (it != team.end()) {
+		team.erase(it);
+		calc();
+		return true;
+	}
+	return false;
 }
 
 const vector<Programmer*>& TeamLeader::getTeamMembers() const
 {
 	return team;
+}
+
+void TeamLeader::clearTeam()
+{
+	if (!team.empty()) 
+	{
+		team.clear();
+		calc();
+	}
 }
 
 void TeamLeader::calc()

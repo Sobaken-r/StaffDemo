@@ -16,11 +16,6 @@ void setColor(int color)
     SetConsoleTextAttribute(hConsole, color);
 }
 
-void MiveMainMenu()
-{
-
-}
-
 int main()
 {
     setlocale(0, "");
@@ -203,6 +198,7 @@ int main()
                 std::cout << "ERROR" << endl;
                 break;
             }
+            pauseManu = _getch();
             break;
         case 7:
             system("cls");

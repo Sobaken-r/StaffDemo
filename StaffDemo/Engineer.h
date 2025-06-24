@@ -91,7 +91,9 @@ public:
 
 
 	void addTeamMember(Programmer* programmer);
+	bool removeTeamMember(Programmer* programmer);
 	const vector<Programmer*>& getTeamMembers() const;
+	void clearTeam();
 
 	void calc();
 	int calcHeading();

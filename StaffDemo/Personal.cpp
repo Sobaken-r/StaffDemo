@@ -26,10 +26,7 @@ void Personal::calc()
     payment = calcBace(salary, worktime);
 }
 
-void Personal::PrintInfo()
-{
-    calc();
-}
+void Personal::PrintInfo(){}
 
 Cleaner::Cleaner(int id, string name, float worktime, int salary, string position) : Personal{ id, name, worktime, salary, "Cleaner" }
 {

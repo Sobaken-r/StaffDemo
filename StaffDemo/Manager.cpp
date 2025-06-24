@@ -89,6 +89,11 @@ int ProjectManager::calcHeading()
 	return 3000;
 }
 
+int ProjectManager::getSalary() const
+{
+	return salary;
+}
+
 //=================================================================================================
 
 bool SeniorManager::addProject(Project* project)
@@ -160,7 +165,6 @@ void SeniorManager::calc()
 {
 	salary = worktime * payment;
 
-	// Бонус от всех проектов
 	double totalBudget = 0.0;
 	for (Project* project : allProjects) {
 		if (project) {
@@ -169,7 +173,6 @@ void SeniorManager::calc()
 	}
 	salary += totalBudget * BASE_BONUS_PERCENT;
 
-	// Бонус за команду
 	if (!allTeamMembers.empty()) {
 		salary += salary * TEAM_BONUS_PERCENT;
 	}

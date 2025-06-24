@@ -203,14 +203,14 @@ void Factory::PrintEmployeesByProject(int projectID)
 	}
 
 	if (!projectFound) {
-		std::cout << "Project with ID " << projectID << " not found!" << endl;
+		std::cout << "Проект с идентификатором " << projectID << " не найдено!" << endl;
 		return;
 	}
 
 	std::cout << "===== Employees working on project ID " << projectID << " =====" << endl;
 
 	// Поиск инженеров
-	std::cout << "\nEngineers:" << endl;
+	std::cout << "\n\t\t\t\tEngineers:" << endl;
 	for (const Engineer& eng : engineers) {
 		if (eng.getProject() && eng.getProject()->getProjectID() == projectID) {
 			eng.PrintInfo();
@@ -219,7 +219,7 @@ void Factory::PrintEmployeesByProject(int projectID)
 	}
 
 	// Поиск программистов
-	std::cout << "\nProgrammers:" << endl;
+	std::cout << "\n\t\t\t\tProgrammers:" << endl;
 	for (const Programmer& prog : progremmers) {
 		if (prog.getProject() && prog.getProject()->getProjectID() == projectID) {
 			prog.PrintInfo();
@@ -227,7 +227,7 @@ void Factory::PrintEmployeesByProject(int projectID)
 		}
 	}
 	// Поиск тестеров
-	std::cout << "\nTesters:" << endl;
+	std::cout << "\n\t\t\t\tTesters:" << endl;
 	for (const Tester& tester : testers) {
 		if (tester.getProject() && tester.getProject()->getProjectID() == projectID) {
 			tester.PrintInfo();
@@ -235,7 +235,7 @@ void Factory::PrintEmployeesByProject(int projectID)
 		}
 	}
 	// Поиск тимлидов
-	std::cout << "\nTeam Leaders:" << endl;
+	std::cout << "\n\t\t\t\tTeam Leaders:" << endl;
 	for (const TeamLeader& leader : teamLeders) {
 		if (leader.getProject() && leader.getProject()->getProjectID() == projectID) {
 			leader.PrintInfo();
@@ -399,50 +399,79 @@ void Factory::SaveToFileSimple(const string& filename)
 {
 	ofstream outFile(filename);
 	if (!outFile.is_open()) {
-		cerr << "Error: Cannot open file!" << endl;
+		cout << "Error: Cannot open file!" << endl;
 		return;
 	}
 
+
 	outFile << "\n[Project]\n";
-	for (int i = 0; i < projectCount; i++) {
+	for (int i = 0; i < projectCount; i++)
+	{
 		outFile << projects[i].getProjectID() << "," << projects[i].getProjectName() << "," << projects[i].getProjectBudget() << endl;
 	}
 
 	outFile << "=== Employee Data ===" << endl;
 
 	outFile << "\n[Cleaners]\n";
-	for (const auto& cleaner : cleaners) {
+	for (const auto& cleaner : cleaners) 
+	{
 		outFile << cleaner.getID() << ","<< cleaner.getName() << ","<< cleaner.getPayment() << ","<< cleaner.getWorktime() << "," << cleaner.getSalary() << "," << endl;
 	}
 
 	outFile << "\n[Drivers]\n";
-	for (const auto& driver : drivers) {
+	for (const auto& driver : drivers) 
+	{
 		outFile << driver.getID() << "," << driver.getName() << ","<< driver.getPayment() << "," << driver.getWorktime() << "," << driver.getSalary() << endl;
 	}
 
 	outFile << "\n[Engineer]\n";
-	for (int i = 0; i < engineerCount; i++) {
+	for (int i = 0; i < engineerCount; i++) 
+	{
 		outFile << engineers[i].getID() << "," << engineers[i].getName() << "," << engineers[i].getPayment() << "," << engineers->getWorktime() << "," << engineers->getSalary() << endl;
+	}
+	for (int i = 0; i < engineerCount; i++)
+	{
+		outFile << "Engineer," << engineers[i].getID() << "," << engineers[i].getProject()->getProjectID() << "\n";
 	}
 
 	outFile << "\n[Programmer]\n";
-	for (int i = 0; i < programmerCount; i++) {
+	for (int i = 0; i < programmerCount; i++)
+	{
 		outFile << progremmers[i].getID() << "," << progremmers[i].getName() << "," << progremmers[i].getPayment() << "," << progremmers->getWorktime() << "," << progremmers->getSalary() << endl;
+	}
+	for (int i = 0; i < programmerCount; i++) 
+	{
+		outFile << "Programmer," << progremmers[i].getID() << "," << progremmers[i].getProject()->getProjectID() << "\n";
 	}
 
 	outFile << "\n[Testers]\n";
-	for (int i = 0; i < testerCount; i++) {
+	for (int i = 0; i < testerCount; i++) 
+	{
 		outFile << testers[i].getID() << ","<< testers[i].getName() << ","<< testers[i].getPayment() << "," << testers->getWorktime() << "," << testers->getSalary() << endl;
+	}
+	for (int i = 0; i < testerCount; i++) 
+	{
+		outFile << "Tester," << testers[i].getID() << "," << testers[i].getProject()->getProjectID() << "\n";
 	}
 
 	outFile << "\n[TeamLeader]\n";
-	for (int i = 0; i < teamLedersCount; i++) {
+	for (int i = 0; i < teamLedersCount; i++) 
+	{
 		outFile << teamLeders[i].getID() << "," << teamLeders[i].getName() << "," << teamLeders[i].getPayment() << "," << teamLeders->getWorktime() << "," << teamLeders->getSalary() << endl;
+	}
+	for (int i = 0; i < teamLedersCount; i++) 
+	{
+		outFile << "TeamLeader," << teamLeders[i].getID() << "," << teamLeders[i].getProject()->getProjectID() << "\n";
 	}
 
 	outFile << "\n[ProjectManager]\n";
-	for (int i = 0; i < projectManagersCount; i++) {
+	for (int i = 0; i < projectManagersCount; i++) 
+	{
 		outFile << projectManagers[i].getID() << "," << projectManagers[i].getName() << "," << projectManagers[i].getPayment() << "," << projectManagers->getWorktime() << endl;
+	}
+	for (int i = 0; i < projectManagersCount; i++) 
+	{
+		outFile << "ProjectManager," << projectManagers[i].getID() << ","<< projectManagers[i].getProject()->getProjectID() << "\n";
 	}
 
 	outFile << "\n[SeniorManager]\n";
@@ -460,7 +489,7 @@ void Factory::СreateProject(int projectID, const string& projectName, double bud
 
 	for (int i = 0; i < projectCount; ++i) {
 		if (projects[i].getProjectID() == projectID) {
-			cout << "Error: Project with ID " << projectID << " already exists!" << endl;
+			cout << "Error: Проект с идентификатором " << projectID << " already exists!" << endl;
 			return;
 		}
 	}
@@ -496,7 +525,7 @@ bool Factory::RemoveProject(int projectID)
 	}
 
 	if (index == -1) {
-		cout << "Project with ID " << projectID << " not found." << endl;
+		cout << "Проект с идентификатором " << projectID << " не найдено." << endl;
 		return false;
 	}
 
@@ -511,7 +540,7 @@ bool Factory::RemoveProject(int projectID)
 	}
 
 	projectCount--;
-	cout << "Project with ID " << projectID << " removed successfully." << endl;
+	cout << "Проект с идентификатором " << projectID << " removed successfully." << endl;
 	return true;
 }
 
@@ -535,15 +564,18 @@ void Factory::CreateEngineer(int id, const string& name, int workTime, double sa
 bool Factory::AssignEngineerToProject(int engineerID, int projectID)
 {
 	Engineer* engineer = nullptr;
+	int engineerIndex = -1;
+
 	for (int i = 0; i < engineerCount; ++i) {
 		if (engineers[i].getID() == engineerID) {
 			engineer = &engineers[i];
+			engineerIndex = i;
 			break;
 		}
 	}
 
-	if (!engineers) {
-		cout << "Programmer with ID " << engineerID << " not found." << endl;
+	if (!engineer) {
+		cout << "Error: Инженер с идентификатором " << engineerID << " не найдено." << endl;
 		return false;
 	}
 
@@ -556,27 +588,28 @@ bool Factory::AssignEngineerToProject(int engineerID, int projectID)
 	}
 
 	if (!project) {
-		cout << "Project with ID " << projectID << " not found." << endl;
+		cout << "Error: Проект с идентификатором " << projectID << " не найдено." << endl;
 		return false;
 	}
 
 	Project* currentProject = engineer->getProject();
-
-	if (currentProject && currentProject->getProjectID() == projectID) {
-		cout << "Programmer is already assigned to this project." << endl;
-		return false;
+	if (currentProject && currentProject->getProjectID() == projectID) 
+	{
+		cout << "Инженер уже назначен на этот проект." << endl;
+		return true;
 	}
 
 	if (currentProject) {
-		cout << "Removing programmer from project: "
-			<< currentProject->getProjectName() << endl;
+		cout << "Удаление инженера из проекта: "<< currentProject->getProjectName() << endl;
+		engineer->removeProject();
 	}
 
+	if (!engineer->addProject(project)) {
+		cout << "Error: Не удалось назначить инженера для проекта." << endl;
+		return false;
+	}
 
-	engineer->addProject(project);
-	cout << "Programmer " << engineers->getName()
-		<< " successfully reassigned to project "
-		<< project->getProjectName() << endl;
+	cout << "Инженер " << engineer->getName() << " назначен для проекта " << project->getProjectName() << endl;
 
 	return true;
 }
@@ -601,15 +634,18 @@ void Factory::CreateProgrammer(int id, const string& name, int workTime, double 
 bool Factory::AssignProgrammerToProject(int programmerID, int projectID)
 {
 	Programmer* programmer = nullptr;
+	int programmerIndex = -1;
+
 	for (int i = 0; i < programmerCount; ++i) {
 		if (progremmers[i].getID() == programmerID) {
 			programmer = &progremmers[i];
+			programmerIndex = i;
 			break;
 		}
 	}
 
 	if (!programmer) {
-		cout << "Programmer with ID " << programmerID << " not found." << endl;
+		cout << "Error: Программатор с идентификатором " << programmerID << " не найдено." << endl;
 		return false;
 	}
 
@@ -622,26 +658,38 @@ bool Factory::AssignProgrammerToProject(int programmerID, int projectID)
 	}
 
 	if (!project) {
-		cout << "Project with ID " << projectID << " not found." << endl;
+		cout << "Error: Проект с идентификатором " << projectID << " не найдено." << endl;
 		return false;
 	}
 
-	Project* currentProject = programmer->getProject();
-
-	if (currentProject && currentProject->getProjectID() == projectID) {
-		cout << "Programmer is already assigned to this project." << endl;
-		return false;
+	if (programmer->getProject() && programmer->getProject()->getProjectID() == projectID) {
+		cout << "Info: Программист уже назначен для этого проекта." << endl;
+		return true;
 	}
 
-	if (currentProject) {
-		cout << "Removing programmer from project: "
-			<< currentProject->getProjectName() << endl;
+	if (programmer->getProject()) {
+		int oldProjectID = programmer->getProject()->getProjectID();
+		programmer->removeProject();
+
+		for (int i = 0; i < teamLedersCount; ++i) {
+			if (teamLeders[i].getProject() &&
+				teamLeders[i].getProject()->getProjectID() == oldProjectID) {
+				teamLeders[i].removeTeamMember(programmer);
+			}
+		}
 	}
 
 	programmer->addProject(project);
-	cout << "Programmer " << programmer->getName()
-		<< " successfully reassigned to project "
-		<< project->getProjectName() << endl;
+
+	for (int i = 0; i < teamLedersCount; ++i) {
+		if (teamLeders[i].getProject() &&
+			teamLeders[i].getProject()->getProjectID() == projectID) {
+			teamLeders[i].addTeamMember(programmer);
+			break;
+		}
+	}
+
+	cout << "Программист " << programmer->getName() << " назначен для проекта " << project->getProjectName() << endl;
 
 	return true;
 }
@@ -666,37 +714,56 @@ void Factory::CreateTester(int id, const string& name, int workTime, double paym
 bool Factory::AssignTesterToProject(int testerID, int projectID)
 {
 	Tester* tester = nullptr;
+    int testerIndex = -1;
 
-	// Поиск тестировщика
-	for (int i = 0; i < testerCount; ++i) {
-		if (testers[i].getID() == testerID) {
-			tester = &testers[i];
-			break;
-		}
-	}
+    for (int i = 0; i < testerCount; ++i) 
+	{
+        if (testers[i].getID() == testerID) 
+		{
+            tester = &testers[i];
+            testerIndex = i;
+            break;
+        }
+    }
 
-	if (!tester) {
-		cout << "Tester with ID " << testerID << " not found." << endl;
-		return false;
-	}
+    if (!tester) 
+	{
+		cout << "Error: Тестировщик с идентификатором" << testerID << " не найдено." << endl;
+        return false;
+    }
 
-	Project* project = nullptr;
-	for (int i = 0; i < projectCount; ++i) {
-		if (projects[i].getProjectID() == projectID) {
-			project = &projects[i];
-			break;
-		}
-	}
+    Project* project = nullptr;
+    for (int i = 0; i < projectCount; ++i) 
+	{
+        if (projects[i].getProjectID() == projectID) 
+		{
+            project = &projects[i];
+            break;
+        }
+    }
 
-	if (!project) {
-		cout << "Project with ID " << projectID << " not found." << endl;
-		return false;
-	}
+    if (!project) 
+	{
+		cout << "Error: Проект с идентификатором " << projectID << " не найдено." << endl;
+        return false;
+    }
 
-	tester->addProject(project);
-	cout << "Tester " << tester->getName() << " assigned to project "
-		<< project->getProjectName() << endl;
-	return true;
+    if (tester->getProject() && tester->getProject()->getProjectID() == projectID) 
+	{
+        cout << "Тестировщик уже назначен для этого проекта." << endl;
+        return true;
+    }
+
+    if (tester->getProject()) 
+	{
+        tester->removeProject();
+    }
+
+    tester->addProject(project);
+    
+    cout << "Тестировщик " << tester->getName() << " назначен для проекта " << project->getProjectName() << endl;
+    
+    return true;
 }
 
 void Factory::CreateTeamLeader(int id, const string& name, int workTime, double paymentRate, const string& position)
@@ -719,38 +786,58 @@ void Factory::CreateTeamLeader(int id, const string& name, int workTime, double 
 bool Factory::AssignTeamLeaderToProject(int leaderID, int projectID)
 {
 	TeamLeader* leader = nullptr;
+	int leaderIndex = -1;
 
-	// Поиск тимлида
-	for (int i = 0; i < teamLedersCount; ++i) {
-		if (teamLeders[i].getID() == leaderID) {
+	for (int i = 0; i < teamLedersCount; ++i)
+	{
+		if (teamLeders[i].getID() == leaderID) 
+		{
 			leader = &teamLeders[i];
+			leaderIndex = i;
 			break;
 		}
 	}
 
 	if (!leader) {
-		cout << "TeamLeader with ID " << leaderID << " not found." << endl;
+		cout << "Error: Руководитель группы с удостоверением личности " << leaderID << " не найдено." << endl;
 		return false;
 	}
 
-	// Поиск проекта
 	Project* project = nullptr;
-	for (int i = 0; i < projectCount; ++i) {
-		if (projects[i].getProjectID() == projectID) {
+	for (int i = 0; i < projectCount; ++i) 
+	{
+		if (projects[i].getProjectID() == projectID) 
+		{
 			project = &projects[i];
 			break;
 		}
 	}
 
 	if (!project) {
-		cout << "Project with ID " << projectID << " not found." << endl;
+		cout << "Error: Проект с идентификатором " << projectID << " не найдено." << endl;
 		return false;
 	}
 
-	// Привязываем проект к тимлиду
+	if (leader->getProject() && leader->getProject()->getProjectID() == projectID) {
+		cout << "Руководитель группы уже назначен для этого проекта." << endl;
+		return true;
+	}
+
+	if (leader->getProject()) {
+		leader->clearTeam();
+		leader->removeProject();
+	}
+
 	leader->addProject(project);
-	cout << "TeamLeader " << leader->getName()
-		<< " assigned to project " << project->getProjectName() << endl;
+
+	for (int i = 0; i < programmerCount; ++i) {
+		if (progremmers[i].getProject() &&
+			progremmers[i].getProject()->getProjectID() == projectID) {
+			leader->addTeamMember(&progremmers[i]);
+		}
+	}
+
+	cout << "Руководитель группы " << leader->getName() << " назначен для проекта " << project->getProjectName() << endl;
 
 	return true;
 }
@@ -773,37 +860,77 @@ void Factory::CreateProjectManager(int id, string name, float worktime, const st
 bool Factory::AssignProjectManagerToProject(int pmID, int projectID)
 {
 	ProjectManager* pm = nullptr;
-	Project* project = nullptr;
-
-	// Поиск PM
-	for (int i = 0; i < projectManagersCount; ++i) {
-		if (projectManagers[i].getID() == pmID) {
+	for (int i = 0; i < projectManagersCount; ++i) 
+	{
+		if (projectManagers[i].getID() == pmID)
+		{
 			pm = &projectManagers[i];
 			break;
 		}
 	}
 
-	if (!pm) {
-		cout << "ProjectManager with ID " << pmID << " not found." << endl;
+	if (!pm) 
+	{
+		cout << "Error: Руководитель проекта с удостоверением личности " << pmID << " не найдено." << endl;
 		return false;
 	}
 
-	// Поиск проекта
-	for (int i = 0; i < projectCount; ++i) {
-		if (projects[i].getProjectID() == projectID) {
+	Project* project = nullptr;
+	for (int i = 0; i < projectCount; ++i) 
+	{
+		if (projects[i].getProjectID() == projectID) 
+		{
 			project = &projects[i];
 			break;
 		}
 	}
 
-	if (!project) {
-		cout << "Project with ID " << projectID << " not found." << endl;
+	if (!project) 
+	{
+		cout << "Error: Проект с идентификатором " << projectID << " не найдено." << endl;
 		return false;
 	}
 
-	pm->addProject(project);
-	cout << "ProjectManager " << pm->getName()
-		<< " assigned to project " << project->getProjectName() << endl;
+	Project* currentProject = pm->getProject();
+	if (currentProject && currentProject->getProjectID() == projectID) 
+	{
+		cout << "Руководитель проекта уже назначен для этого проекта." << endl;
+		return true;
+	}
+
+	if (currentProject) 
+	{
+		cout << "Удаление менеджера проекта из текущего проекта: "
+			<< currentProject->getProjectName() << endl;
+		pm->removeProject();
+	}
+
+	if (!pm->addProject(project)) 
+	{
+		cout << "Error: Не удалось назначить руководителя проекта для project." << endl;
+		return false;
+	}
+
+	int teamMembersAdded = 0;
+	for (int i = 0; i < programmerCount; ++i)
+	{
+		if (progremmers[i].getProject() &&
+			progremmers[i].getProject()->getProjectID() == projectID) 
+		{
+			pm->addTeamMember(&progremmers[i]);
+			teamMembersAdded++;
+		}
+	}
+	for (int i = 0; i < testerCount; ++i) {
+		if (testers[i].getProject() &&
+			testers[i].getProject()->getProjectID() == projectID) {
+			pm->addTeamMember(&testers[i]);
+			teamMembersAdded++;
+		}
+	}
+
+	cout << "Менеджер проекта " << pm->getName()<< " назначен для проекта " << project->getProjectName()<< " с " << teamMembersAdded << " члены команды" << endl;
+
 	return true;
 }
 
@@ -811,7 +938,6 @@ bool Factory::AddEmployeeToProjectManager(int pmID, Employee* employee)
 {
 	ProjectManager* pm = nullptr;
 
-	// Поиск PM
 	for (int i = 0; i < projectManagersCount; ++i) {
 		if (projectManagers[i].getID() == pmID) {
 			pm = &projectManagers[i];
@@ -820,18 +946,17 @@ bool Factory::AddEmployeeToProjectManager(int pmID, Employee* employee)
 	}
 
 	if (!pm) {
-		cout << "ProjectManager with ID " << pmID << " not found." << endl;
+		cout << "Руководитель проекта с удостоверением личности " << pmID << " не найдено." << endl;
 		return false;
 	}
 
 	if (!employee) {
-		cout << "Error: Invalid employee pointer!" << endl;
+		cout << "Error: Неверный указатель сотрудника!" << endl;
 		return false;
 	}
 
 	pm->addTeamMember(employee);
-	cout << employee->getName() << " added to ProjectManager "
-		<< pm->getName() << "'s team" << endl;
+	cout << employee->getName() << " добавлено в Менеджер проекта "<< pm->getName() << "команда" << endl;
 	return true;
 }
 
